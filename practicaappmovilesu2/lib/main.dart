@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'YAS NO APP ALEJANDRA ',
         debugShowCheckedModeBanner: false,
-        theme: Apptheme(selectColor: 1).theme(),
+        theme: Apptheme(selectColor: 3).theme(),
         home: const chat());
   }
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:practicaappmovilesu2/config/theme/presentation/widgets/my_mensaje_bubble.dart';
+import 'package:practicaappmovilesu2/config/theme/presentation/widgets/squirtle_message_bubble.dart';
 
 class chat extends StatelessWidget {
   const chat({super.key});
@@ -24,20 +26,27 @@ class chat extends StatelessWidget {
 }
 
 class _chatView extends StatelessWidget {
-  const _chatView({super.key});
+  const _chatView();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          Expanded(child: Container(color: Colors.blue)),
-          const Text("mensaje 1 "),
-          const Text("hola mundito")
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          children: [
+            Expanded(
+                child: ListView.builder(
+              itemCount: 101,
+              itemBuilder: ((context, index) {
+                return (index % 2 == 0)
+                    ? const MyMessageBubble()
+                    : const SquirtleMessageBubble();
+              }),
+            ))
+          ],
+        ),
       ),
-    ));
+    );
   }
 }
