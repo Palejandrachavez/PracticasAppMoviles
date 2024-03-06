@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:practicaappmovilesu2/config/theme/presentation/widgets/my_mensaje_bubble.dart';
-import 'package:practicaappmovilesu2/config/theme/presentation/widgets/squirtle_message_bubble.dart';
+import 'package:practicaappmovilesu2/presentation/widgets/my_mensaje_bubble.dart';
+import 'package:practicaappmovilesu2/presentation/widgets/squirtle_message_bubble.dart';
 
 class chat extends StatelessWidget {
   const chat({super.key});
