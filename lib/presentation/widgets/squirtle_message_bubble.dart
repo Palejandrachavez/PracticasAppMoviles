@@ -1,7 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class SquirtleMessageBubble extends StatelessWidget {
   const SquirtleMessageBubble({super.key});
@@ -38,20 +35,23 @@ class _ImageBubble extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Size = MediaQuery.of(context).size;
+    final width = Size.width * 0.7;
+    final height = Size.height * 0.5;
+
     print('anchoo${Size.width}* ${Size.width * 0.7}');
 
     return ClipRRect(
       child: Image.network(
-        width: Size.width * 0.4,
-        height: Size.height * 0.2,
+        width: width,
+        height: height,
         fit: BoxFit.cover,
         "https://i.pinimg.com/originals/18/8e/a6/188ea685559ff1bd99001459e9a23985.jpg",
         loadingBuilder: (context, child, loadingProgress) =>
             (loadingProgress == null)
                 ? child
                 : Container(
-                    width: Size.width * 0.7,
-                    height: Size.height * 0.2,
+                    width: width,
+                    height: height,
                     padding:
                         const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     child: const Text("CARGANDO MOMASO.."),
