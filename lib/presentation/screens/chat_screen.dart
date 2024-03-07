@@ -1,4 +1,7 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:practicaappmovilesu2/presentation/widgets/my_mensaje_bubble.dart';
 import 'package:practicaappmovilesu2/presentation/widgets/squirtle_message_bubble.dart';
 
@@ -8,18 +11,19 @@ class chat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          leading: const Padding(
-            padding: EdgeInsets.all(5),
-            child: CircleAvatar(
-              backgroundImage: NetworkImage(
-                  'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png'),
-            ),
+      appBar: AppBar(
+        leading: const Padding(
+          padding: EdgeInsets.all(5),
+          child: CircleAvatar(
+            backgroundImage: NetworkImage(
+                'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png'),
           ),
-          title: Text("mi practica app movil"),
-          centerTitle: true,
         ),
-        body: const _chatView());
+        title: Text("mi practica app movil"),
+        centerTitle: true,
+      ),
+      body: const _chatView(),
+    );
   }
 }
 
