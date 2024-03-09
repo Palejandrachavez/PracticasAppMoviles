@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class SquirtleMessageBubble extends StatelessWidget {
-  const SquirtleMessageBubble({super.key});
+  final String message;
+
+  const SquirtleMessageBubble({super.key, required this.message});
 
   @override
   Widget build(BuildContext context) {

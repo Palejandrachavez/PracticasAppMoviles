@@ -5,18 +5,49 @@ class MessageFieldBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final UnderlineInputBorder OutlineInputBorder = UnderlineInputBorder(
-        borderSide: const BorderSide(color: Colors.transparent),
-        borderRadius: BorderRadius.circular(20));
+    final textController = TextEditingController();
+    final focusNode = FocusNode();
 
     return TextFormField(
-        decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder,
-            focusedBorder: OutlineInputBorder,
-            filled: true,
-            suffixIcon: IconButton(
-              icon: const Icon(Icons.send_and_archive_outlined),
-              onPressed: () {},
-            )));
+      controller: textController,
+      focusNode: focusNode,
+      onTapOutside: (event) {
+        focusNode.unfocus();
+      },
+      onFieldSubmitted: (value) {
+        print('Valor enviado: $value');
+        textController.clear();
+        focusNode.requestFocus();
+      },
+      decoration: _buildInputDecoration(
+        inputBorder: _outlineInputBorder(),
+        onPressed: () => _onPressed(textController: textController),
+      ),
+    );
+  }
+
+  UnderlineInputBorder _outlineInputBorder() => const UnderlineInputBorder(
+        borderSide: BorderSide(color: Colors.transparent),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      );
+
+  InputDecoration _buildInputDecoration({
+    required InputBorder inputBorder,
+    required VoidCallback onPressed,
+  }) =>
+      InputDecoration(
+        enabledBorder: inputBorder,
+        focusedBorder: inputBorder,
+        filled: true,
+        suffixIcon: IconButton(
+          icon: const Icon(Icons.send_and_archive_outlined),
+          onPressed: onPressed,
+        ),
+      );
+
+  void _onPressed({required TextEditingController textController}) {
+    final textValue = textController.text;
+    print('Valor de la nueva función: $textValue');
+    textController.clear();
   }
 }
