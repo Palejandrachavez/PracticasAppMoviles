@@ -59,10 +59,12 @@ class _chatView extends StatelessWidget {
                       print(chatProvider.messageList[index].text);
 
                       return (chatProvider.messageList[index].fromWho ==
-                              FromWho.hers)
-                          ? const SquirtleMessageBubble()
-                          : MyMessageBubble(
-                              message: chatProvider.messageList[index].text);
+                              FromWho.me)
+                          ? MyMessageBubble(
+                              message: chatProvider.messageList[index].text)
+                          : SquirtleMessageBubble(
+                              message: chatProvider.messageList[index].text,
+                            );
                     }))),
             const MessageFieldBox()
           ],

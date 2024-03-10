@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:practicaappmovilesu2/domain/entities/message.dart';
 
 class MyMessageBubble extends StatelessWidget {
   final String message;
