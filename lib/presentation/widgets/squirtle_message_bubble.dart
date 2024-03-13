@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:practicaappmovilesu2/domain/entities/message.dart';
 
 class SquirtleMessageBubble extends StatelessWidget {
-  final String message;
+  final Message message;
 
   const SquirtleMessageBubble({super.key, required this.message});
 
@@ -15,14 +16,16 @@ class SquirtleMessageBubble extends StatelessWidget {
           decoration: BoxDecoration(
               color: colors.primary, borderRadius: BorderRadius.circular(20)),
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Text(message),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+            child: Text(message.text),
           ),
         ),
         const SizedBox(
-          height: 20,
+          height: 10,
         ),
-        const _ImageBubble(),
+        _ImageBubble(
+          imageURL: message.imageURl,
+        ),
         const SizedBox(
           height: 10,
         )
@@ -32,33 +35,30 @@ class SquirtleMessageBubble extends StatelessWidget {
 }
 
 class _ImageBubble extends StatelessWidget {
-  const _ImageBubble({super.key});
+  final String? imageURL;
+  const _ImageBubble({this.imageURL});
 
   @override
   Widget build(BuildContext context) {
-    final Size = MediaQuery.of(context).size;
-    final width = Size.width * 0.7;
-    final height = Size.height * 0.5;
-
-    print('anchoo${Size.width}* ${Size.width * 0.7}');
+    final size = MediaQuery.of(context).size;
 
     return ClipRRect(
+      borderRadius: BorderRadius.circular(20),
       child: Image.network(
-        width: width,
-        height: height,
-        fit: BoxFit.cover,
-        "https://i.pinimg.com/originals/18/8e/a6/188ea685559ff1bd99001459e9a23985.jpg",
-        loadingBuilder: (context, child, loadingProgress) =>
-            (loadingProgress == null)
-                ? child
-                : Container(
-                    width: width,
-                    height: height,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                    child: const Text("CARGANDO MOMASO.."),
-                  ),
-      ),
+          width: size.width * 0.7,
+          height: size.height * 0.2,
+          fit: BoxFit.cover,
+          imageURL!,
+          loadingBuilder: (context, child, loadingProgress) =>
+              (loadingProgress == null)
+                  ? child
+                  : Container(
+                      width: size.width * 0.7,
+                      height: size.height * 0.2,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
+                      child: const Text("cargando imagen ..."),
+                    )),
     );
   }
 }

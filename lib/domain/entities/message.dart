@@ -5,5 +5,9 @@ class Message {
   final String? imageURl;
   final FromWho fromWho;
 
-  Message({required this.text, this.imageURl, required this.fromWho});
+  const Message({
+    required this.text,
+    this.imageURl,
+    required this.fromWho,
+  });
 }

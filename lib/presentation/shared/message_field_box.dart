@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MessageFieldBox extends StatelessWidget {
-  const MessageFieldBox({super.key});
+  final ValueChanged<String> onValue; //es un argumento requerido
+
+  const MessageFieldBox({super.key, required this.onValue});
 
   @override
   Widget build(BuildContext context) {
@@ -15,13 +17,15 @@ class MessageFieldBox extends StatelessWidget {
         focusNode.unfocus();
       },
       onFieldSubmitted: (value) {
-        print('Valor enviado: $value');
+        onValue(value);
+        // print('Valor enviado: $value');
         textController.clear();
         focusNode.requestFocus();
       },
       decoration: _buildInputDecoration(
         inputBorder: _outlineInputBorder(),
-        onPressed: () => _onPressed(textController: textController),
+        onPressed: () =>
+            _onPressed(textController: textController, onValue: onValue),
       ),
     );
   }
@@ -39,15 +43,17 @@ class MessageFieldBox extends StatelessWidget {
         enabledBorder: inputBorder,
         focusedBorder: inputBorder,
         filled: true,
+        hintText: 'termina las pregunta con el signo ?',
         suffixIcon: IconButton(
           icon: const Icon(Icons.send_and_archive_outlined),
           onPressed: onPressed,
         ),
       );
-
-  void _onPressed({required TextEditingController textController}) {
+  void _onPressed(
+      {required TextEditingController textController,
+      required ValueChanged<String> onValue}) {
     final textValue = textController.text;
-    print('Valor de la nueva función: $textValue');
+    onValue(textValue);
     textController.clear();
   }
 }

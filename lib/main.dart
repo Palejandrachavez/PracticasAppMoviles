@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [ChangeNotifierProvider(create: (_) => ChatProvider())],
       child: MaterialApp(
-          title: 'YAS NO APP ALEJANDRA ',
+          title: 'YeS NO APP ALEJANDRA ',
           debugShowCheckedModeBanner: false,
           theme: Apptheme(selectColor: 1).theme(),
-          home: const chat()),
+          home: const Chat()),
     );
   }
 }

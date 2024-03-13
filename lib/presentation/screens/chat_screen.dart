@@ -2,34 +2,33 @@ import 'package:flutter/material.dart';
 import 'package:practicaappmovilesu2/domain/entities/message.dart';
 import 'package:practicaappmovilesu2/presentation/providers/chat_provider.dart';
 import 'package:practicaappmovilesu2/presentation/shared/message_field_box.dart';
-import 'package:practicaappmovilesu2/presentation/widgets/my_mensaje_bubble.dart';
+import 'package:practicaappmovilesu2/presentation/widgets/my_message_bubble.dart';
 import 'package:practicaappmovilesu2/presentation/widgets/squirtle_message_bubble.dart';
 import 'package:provider/provider.dart';
 
-class chat extends StatelessWidget {
-  const chat({super.key});
+class Chat extends StatelessWidget {
+  const Chat({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: const Padding(
-          padding: EdgeInsets.all(5),
-          child: CircleAvatar(
-            backgroundImage: NetworkImage(
-                'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png'),
+        appBar: AppBar(
+          leading: const Padding(
+            padding: EdgeInsets.all(5),
+            child: CircleAvatar(
+              backgroundImage: NetworkImage(
+                  'https://assets.pokemon.com/assets/cms2/img/pokedex/full/151.png'),
+            ),
           ),
+          title: const Text("mi practica app movil"),
+          centerTitle: true,
         ),
-        title: Text("mi practica app movil"),
-        centerTitle: true,
-      ),
-      body: const _chatView(),
-    );
+        body: const _ChatView());
   }
 }
 
-class _chatView extends StatelessWidget {
-  const _chatView();
+class _ChatView extends StatelessWidget {
+  const _ChatView();
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +39,9 @@ class _chatView extends StatelessWidget {
       decoration: const BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.fromARGB(255, 245, 62, 62),
-            Color.fromARGB(255, 46, 49, 81),
-            Color.fromARGB(255, 199, 140, 140),
+            Color.fromARGB(255, 100, 25, 119),
+            Color.fromARGB(255, 168, 174, 235),
+            Color.fromARGB(255, 208, 170, 112),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -54,19 +53,22 @@ class _chatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
+                    controller: chatProvider.Chatcontroller,
                     itemCount: chatProvider.messageList.length,
                     itemBuilder: ((context, index) {
-                      print(chatProvider.messageList[index].text);
+                      //  print(chatProvider.messageList[index].text);
 
                       return (chatProvider.messageList[index].fromWho ==
-                              FromWho.me)
-                          ? MyMessageBubble(
-                              message: chatProvider.messageList[index].text)
-                          : SquirtleMessageBubble(
-                              message: chatProvider.messageList[index].text,
-                            );
+                              FromWho.hers)
+                          ? SquirtleMessageBubble(
+                              message: chatProvider.messageList[index])
+                          : MyMessageBubble(
+                              message: chatProvider.messageList[index]);
                     }))),
-            const MessageFieldBox()
+            MessageFieldBox(
+              onValue: (value) => chatProvider
+                  .sendMessage(value), //es el valor que la persona escribe
+            ),
           ],
         ),
       ),
