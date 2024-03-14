@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:practicaappmovilesu2/domain/entities/message.dart';
 import 'package:practicaappmovilesu2/presentation/providers/chat_provider.dart';
+import 'package:practicaappmovilesu2/presentation/shared/call_Icon.dart';
 import 'package:practicaappmovilesu2/presentation/shared/message_field_box.dart';
 import 'package:practicaappmovilesu2/presentation/widgets/my_message_bubble.dart';
 import 'package:practicaappmovilesu2/presentation/widgets/squirtle_message_bubble.dart';
@@ -8,7 +9,6 @@ import 'package:provider/provider.dart';
 
 class Chat extends StatelessWidget {
   const Chat({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +21,8 @@ class Chat extends StatelessWidget {
             ),
           ),
           title: const Text("mi practica app movil"),
-          centerTitle: true,
+          centerTitle: false,
+          actions: const <Widget>[IconButtonExample()],
         ),
         body: const _ChatView());
   }
@@ -53,7 +54,7 @@ class _ChatView extends StatelessWidget {
           children: [
             Expanded(
                 child: ListView.builder(
-                    controller: chatProvider.Chatcontroller,
+                    controller: chatProvider.chatController,
                     itemCount: chatProvider.messageList.length,
                     itemBuilder: ((context, index) {
                       //  print(chatProvider.messageList[index].text);
